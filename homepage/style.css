@@ -1,0 +1,72 @@
+body{
+    background-color: black;
+    align-content: center;
+}
+
+text{
+    color: white;
+    text-align: center;
+    font-family: monospace;
+}
+
+h1{
+    color: white;
+    text-align: center;
+    font-family: monospace;
+}
+
+h2{
+    color: white;
+    text-align: center;
+    font-family: monospace;
+}
+
+h3{
+    color: white;
+    text-align: center;
+    font-family: monospace;
+}
+
+h4{
+    color: white;
+    text-align: center;
+    font-family: monospace;
+}
+
+h5{
+    color: white;
+    text-align: center;
+    font-family: monospace;
+}
+
+h6{
+    color: white;
+    text-align: center;
+    font-family: monospace;
+}
+
+p{
+    color: white;
+    font-family: monospace;
+}
+
+a{
+    color: violet;
+    font-family: monospace;
+}
+
+button
+{
+    background-color: white;
+    border: transparent;
+    outline: royalblue 2px;
+    cursor: pointer;
+    transition: transform ease-in-out 0.1s;
+
+}
+
+button:hover
+{
+    background-color: darkgray;
+    transform: scale(1.1);
+}
