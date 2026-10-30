@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <link rel="stylesheet" href="game-style.css"/>
+        <title>Turtle Clicker</title>
+        <script>
+          var clicks = 0;
+          var multiplier = 1;
+          var autoclick = 0;
+          var clickSound = new Audio('../sounds/click.mp3');
+
+          window.onload = function()
+          {
+            loadGame();
+            setInterval(autoClick, 1000);
+            setInterval(saveGame, 1000);
+          }
+
+          function updateDisplay()
+          {
+            document.getElementById("clickcounter").textContent = "Clicks: " + clicks;
+            document.getElementById("multipliertext").textContent = "Multiplier: " + multiplier;
+            document.getElementById("autotext").textContent = "Clicks per second: " + autoclick;
+          }
+
+          function turtleClick()
+          {
+            clicks += 1 * multiplier;
+            updateDisplay();
+            clickSound.play();
+          }
+
+          function buyMultiplier(multiplierToAdd, price)
+          {
+            if (clicks >= price)
+            {
+              multiplier += multiplierToAdd;
+              clicks -= price;
+              updateDisplay()
+            }
+            else
+            {
+              popupText = document.createElement("h3");
+              popupText.textContent = "You don't have enough clicks!";
+            }
+            clickSound.play();
+          }
+
+          function buyAutoclick(autoToAdd, price)
+          {
+            if (clicks >= price)
+            {
+              autoclick += autoToAdd;
+              clicks -= price;
+              updateDisplay()
+            }
+            clickSound.play();
+          }
+
+         function autoClick()
+         {
+            clicks += autoclick;
+            updateDisplay()
+         }
+
+         function saveGame()
+         {
+           localStorage.setItem("turtleclicker.clicks", clicks);
+           localStorage.setItem("turtleclicker.mult", multiplier);
+           localStorage.setItem("turtleclicker.cps", autoclick);
+         }
+
+         function loadGame(){
+           var savedClicks = localStorage.getItem("turtleclicker.clicks");
+           var savedMult = localStorage.getItem("turtleclicker.mult");
+           var savedCPS = localStorage.getItem("turtleclicker.cps");
+
+           if (savedClicks !== null) clicks = parseFloat(savedClicks);
+           if (savedMult !== null) multiplier = parseFloat(savedMult);
+           if (savedCPS !== null) autoclick = parseFloat(savedCPS);
+
+           updateDisplay();
+         }
+         function resetData()
+         {
+           if (confirm("Reset Save Data?"))
+           {
+             localStorage.clear();
+             clicks = 0;
+             multiplier = 1;
+             autoclick = 0;
+             updateDisplay();
+           }
+
+         }
+
+        </script>
+    </head>
+    <body>
+        <button onclick="resetData()">Reset Save Data</button>
+        <div class="game" id="game">
+
+            <div class="playarea">
+                <h1>Turtle Clicker</h1>
+                <br>
+                <h2>How to play: Click the turtle</h2>
+                <br>
+                <h2 id="clickcounter">Clicks: 0</h2>
+                <h2 id="multipliertext">Multiplier: 1</h2>
+                <h2 id="autotext">Clicks per second: 0</h2>
+                <button class="turtlebutton" onclick="turtleClick()">
+                    <img class="shine" src="../images/shine.png" width="450" height="450"/>
+                    <img class="turtle" src="../images/turtle.png" width="450" height="450"/>
+
+                </button>
+            </div>
+
+            <div id="shop" class="shop">
+                <h2>Shop</h2>
+                <div id="item" class="item">
+                    <h3>Softer Hands</h3>
+                    <p>+ 0.5 click multiplier</p>
+                    <p>50 clicks</p>
+                    <button onclick="buyMultiplier(0.5, 50)">Buy</button>
+                </div><br>
+                <div class="item">
+                    <h3>Turtle Lover</h3>
+                    <p>+ 0.5 Clicks per second</p>
+                    <p>150 Clicks</p>
+                    <button onclick="buyAutoclick(0.5, 150)">Buy</button>
+                </div><br>
+                <div class="item">
+                    <h3>Brush</h3>
+                    <p>+ 1 click multiplier</p>
+                    <p>200 clicks</p>
+                    <button onclick="buyMultiplier(1, 200)">Buy</button>
+                </div><br>
+                <div class="item">
+                    <h3>Animal Shelter</h3>
+                    <p>+ 1 Clicks per second</p>
+                    <p>250 clicks</p>
+                    <button onclick="buyAutoclick(1, 250)">Buy</button>
+                </div><br>
+                <div class="item">
+                    <h3>Hard Shell</h3>
+                    <p>+ 2 click multiplier</p>
+                    <p>350 clicks</p>
+                    <button onclick="buyMultiplier(2, 350)">Buy</button>
+                </div><br>
+                <div class="item">
+                    <h3>Turbo Turtle</h3>
+                    <p>+ 2 Clicks per second</p>
+                    <p>400 clicks</p>
+                    <button onclick="buyAutoclick(2, 400)">Buy</button>
+                </div><br>
+                <div class="item">
+                    <h3>Turtle Armor</h3>
+                    <p>+ 5 click multiplier</p>
+                    <p>550 clicks</p>
+                    <button onclick="buyMultiplier(5, 550)">Buy</button>
+                </div><br>
+                <div class="item">
+                    <h3>CEO Turtle</h3>
+                    <p>+ 5 Clicks per second</p>
+                    <p>650 clicks</p>
+                    <button onclick="buyAutoclick(5, 650)">Buy</button>
+                </div><br>
+                <div class="item">
+                    <h3>Turtle Civilization</h3>
+                    <p>+ 10 click multiplier</p>
+                    <p>800 clicks</p>
+                    <button onclick="buyMultiplier(10, 800)">Buy</button>
+                </div><br>
+                <div class="item">
+                    <h3>Turtle Company</h3>
+                    <p>+ 15 Clicks per second</p>
+                    <p>1000 clicks</p>
+                    <button onclick="buyAutoclick(15, 1000)">Buy</button>
+                </div><br>
+                <div class="item">
+                    <h3>Turtle Country</h3>
+                    <p>+ 25 click multiplier</p>
+                    <p>1500 clicks</p>
+                    <button onclick="buyMultiplier(25, 1500)">Buy</button>
+                </div><br>
+                <div class="item">
+                    <h3>Turtle Planet</h3>
+                    <p>+ 50 Clicks per second</p>
+                    <p>3000 clicks</p>
+                    <button onclick="buyAutoclick(50, 3000)">Buy</button>
+                </div><br>
+                <div class="item">
+                    <h3>Turtle Universe</h3>
+                    <p>+ 100 click multiplier</p>
+                    <p>5000 clicks</p>
+                    <button onclick="buyMultiplier(100, 5000)">Buy</button>
+                </div><br>
+                <div class="item">
+                    <h3>Turtle God</h3>
+                    <p>+ 5000 Clicks per second</p>
+                    <p>1000000 clicks</p>
+                    <button onclick="buyAutoclick(5000, 1000000)">Buy</button>
+                </div><br>
+            </div>
+        </div>
+
+    </body>
+</html>

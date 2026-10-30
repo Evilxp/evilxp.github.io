@@ -1,0 +1,150 @@
+body{
+    background-color: skyblue;
+}
+
+h1{
+    color: white;
+    text-align: center;
+    font-family: monospace;
+}
+
+h2{
+    color: white;
+    text-align: center;
+    font-family: monospace;
+}
+
+h3{
+    color: white;
+    text-align: center;
+    font-family: monospace;
+}
+
+h4{
+    color: white;
+    text-align: center;
+    font-family: monospace;
+}
+
+h5{
+    color: white;
+    text-align: center;
+    font-family: monospace;
+}
+
+h6{
+    color: white;
+    text-align: center;
+    font-family: monospace;
+}
+
+p{
+    color: white;
+    font-family: monospace;
+}
+
+a{
+    color: violet;
+    font-family: monospace;
+}
+
+.turtlebutton
+{
+    background: transparent;
+    position: relative;
+    border: 0px;
+    margin-left: 25%;
+    margin-bottom: 25%;
+    outline: 0px;
+    animation: rotate 1s linear infinite;
+    justify-content: center;
+    align-items: center;
+}
+
+button:active
+{
+    transform: scale(0.95);
+
+}
+
+button
+{
+    transition: transform 0.1s ease-in-out;
+    font-family: monospace;
+    outline: 5px royalblue solid;
+    background: steelblue;
+    border: 0px;
+    color: white;
+    cursor: pointer;
+}
+
+.game
+{
+    display: grid;
+    grid-auto-flow: column;
+}
+
+.shop
+{
+    background-color: steelblue;
+    outline: 5px solid royalblue;
+    padding: 8px;
+    overflow: scroll;
+}
+
+.item
+{
+    background-color: mediumpurple;
+    outline: 5px solid white;
+    padding: 8px;
+    justify-content: center;
+    align-items: center;
+}
+
+.item button:hover
+{
+    background-color: lightseagreen;
+}
+
+.turtle
+{
+    animation: turtle-idle 3s ease-in-out infinite;
+    transform-origin: center;
+    position: relative;
+    z-index: 2;
+}
+
+.shine
+{
+    animation: shine 10s linear infinite;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    opacity: 0.4;
+    pointer-events: none;
+}
+
+@keyframes turtle-idle
+{
+    25%{
+        transform: rotate(5deg);
+    }
+    50%{
+        transform: rotate(-5deg);
+    }
+    75%{
+        transform:rotate(5deg);
+    }
+}
+
+@keyframes shine {
+	from{
+	    transform: rotate(0deg);
+	}
+	to{
+	    transform: rotate(360deg);
+	}
+}
